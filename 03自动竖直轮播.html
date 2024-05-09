@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+    .out {
+        width: 400px;
+        height: 300px;
+        position: relative;
+        overflow: hidden;
+    }
+    .box {
+        width: 400px;
+        height: 300px;
+        position: absolute;
+        top: 0;
+        
+    }
+    .inner {
+        width: 100%;
+        height: 100%;
+    }
+</style>
+<body>
+    <div class="out">
+        <div class="box">
+        <div class="inner" style="background-color: pink;"></div>
+        <div class="inner" style="background-color: yellow;"></div>
+        <div class="inner" style="background-color: green;"></div>
+        </div>
+    </div>
+   <script src="./jquery-3.5.1.js"></script>
+   <script>
+    let cir = function(){
+        let $last = $('.box .inner').last()
+        $('.box').prepend($last)
+        let height = $last.outerHeight(true)
+        $('.box').css('top',-height)
+        $('.box').delay(3000).animate({
+            top:0
+        },function(){
+            cir()
+        })
+    }
+    cir()
+    </script>
+</body>
+
+</html>
